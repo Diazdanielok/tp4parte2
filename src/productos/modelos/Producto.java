@@ -1,13 +1,11 @@
 package productos.modelos;
 
-import usuarios.modelos.Cliente;
-
 public class Producto {
     private int codigo;
     private String descripcion;
     private float precio;
-    private String estado;
-    private String categoria;
+    private Estado estado;
+    private Categoria categoria;
 
     /**
      * Este método permite mostrar un Producto
@@ -16,9 +14,10 @@ public class Producto {
 
     public void mostrar(){
     System.out.println("Codigo: "+ codigo + "\nDescripcion: "+ descripcion + "\nCategoria: "+ categoria + "\nEstado: "+ estado + "\nPrecio: "+ precio);
+    
     }
 
-    public Producto(int codigo, String descripcion, float precio, String estado, String categoria) {
+    public Producto(int codigo, String descripcion, float precio, Estado estado, Categoria categoria) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -46,30 +45,65 @@ public class Producto {
         return precio;
     }
 
+    @Override
+    public String toString() {
+        return " " + "" + descripcion + ' ';
+    }
+
+    
+   
+
     public void asignarPrecio(float precio) {
         this.precio = precio;
     }
 
-    public String verEstado() {
+    public Estado verEstado() {
         return estado;
     }
 
-    public void asignarEstado(String estado) {
+    public void asignarEstado(Estado estado) {
         this.estado = estado;
     }
 
-    public String verCategoria() {
+    public Categoria verCategoria() {
         return categoria;
     }
 
-    public void asignarCategoria(String categoria) {
+    public void asignarCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.codigo;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Producto other = (Producto) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        return true;
+    }
+
     
-    
+    public int compareTo(Producto o) {
+        if(this.categoria.equals(o.categoria)){
+            return this.descripcion.compareTo(o.descripcion);
+        }
+        return this.categoria.compareTo(o.categoria);
+    }
      
 }
-
-
-
-

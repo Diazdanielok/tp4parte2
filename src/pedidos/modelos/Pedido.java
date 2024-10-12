@@ -5,9 +5,11 @@
 package pedidos.modelos;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
+
 
 /**
  *
@@ -17,35 +19,137 @@ public class Pedido {
     private int numero;
     private Cliente unCliente;
     private LocalDateTime fechaYHora;
+    private String fechaacadena;
+    private String horaacadena;
+    private Estado estado;
     
-    private ArrayList<ProductoDelPedido> productosDelPedido = new ArrayList<>();
+    
+    
+    private ArrayList<ProductoDelPedido> ProductosDelPedido = new ArrayList<>();
 
-    public Pedido(int numero, LocalDateTime fechaYHora, Cliente unCliente) {
+    public Pedido(int numero, LocalDateTime fechaYHora,Cliente unCliente) {
         this.numero = numero;
         this.fechaYHora = fechaYHora;
         this.unCliente = unCliente;
+        fechaacadena = this.fechaacadena();
+        horaacadena = this.horaacadena();
+         
     }
-    
+
+    //cambio el método agregarProducto para verificar si ya existe ese producto en el pedido. 
     public void agregarProducto(Producto unProducto, int cantidad) {
-        ProductoDelPedido pdp = new ProductoDelPedido(cantidad, unProducto);
-        this.productosDelPedido.add(pdp);
-    }
-    
-    public void mostrar() {
-        System.out.println(this.numero);
-        for(ProductoDelPedido pdp : this.productosDelPedido) {
-            pdp.mostrar();
+        
+    boolean productoExiste = false;
+    for (ProductoDelPedido pdp : ProductosDelPedido) {
+        if (pdp.verProducto().equals(unProducto)) {
+            productoExiste = true;
+            break;
         }
     }
 
+    if (!productoExiste) {
+        ProductoDelPedido pdp = new ProductoDelPedido(cantidad, unProducto);
+        this.ProductosDelPedido.add(pdp);
+        System.out.println("Producto " + unProducto.toString() + " agregado al pedido.");
+    } else {
+        System.out.println("Producto " + unProducto.toString() + " ya está en el pedido y no se agregó.");
+    }
+}
+
+
+    
+    public void mostrar() {
+        System.out.println("Nro: " + this.numero);
+        System.out.println("Fecha: " + this.fechaacadena + "   Hora: " + this.horaacadena);
+        System.out.println("Cliente: " + unCliente.verApellido() +" " + unCliente.verNombre());
+        System.out.println("Estado: " + Estado.CREADO);
+        
+        System.out.println("Producto        Cantidad");
+        System.out.println("=========================");
+           for (ProductoDelPedido pdp : ProductosDelPedido) {
+        System.out.println(pdp.verProducto().toString() + "        " + pdp.verCantidad());
+    }
+    }
+
+    
+    
+    private String fechaacadena(){
+        String patron = "dd/mm/yyyy";
+        String fechaencadena = fechaYHora.format(DateTimeFormatter.ofPattern(patron));
+        return fechaencadena;
+    
+    }
+    
+    private String horaacadena(){
+        String patron = "hh:mm";
+        String horaencadena = fechaYHora.format(DateTimeFormatter.ofPattern(patron));
+        return horaencadena;
+    
+    }
+    
+    public Estado verEstado(){
+        return estado;
+    }
+    
+    public void asignarEstado(){
+        this.estado = estado;
+    }
+    
+    public Cliente verCliente(){
+        return unCliente;
+    }
+    
+    public void asignarCliente(Cliente unCliente){
+        this.unCliente = unCliente;
+    }
+    
     public int verNumero() {
         return numero;
     }
-
+    
     public void asignarNumero(int numero) {
         this.numero = numero;
     }
     
+    public String verHora(){
+        return horaacadena;
+    }
     
+    public String verFecha(){
+        return fechaacadena;
+    }
     
+    public void asignarFechayHora(LocalDateTime fechaYHora){
+        this.fechaYHora = fechaYHora;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 11 * hash + this.numero;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pedido other = (Pedido) obj;
+        if (this.numero != other.numero) {
+            return false;
+        }
+        return true;
+    }
+
+
+
+    
+   
 }
