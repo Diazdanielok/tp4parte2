@@ -7,7 +7,8 @@ package usuarios.modelos;
 
 import java.util.List;
 import pedidos.modelos.Pedido;
-
+/*4. A la clase Cliente: hacerla subclase de Usuario y realizar las modificaciones que considere
+necesarias. Como se ve son visibles las modificaciones en el*/
 public class Cliente extends Usuario {
 
     public Cliente(String correo, String apellido, String nombre, String clave) {

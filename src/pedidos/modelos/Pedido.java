@@ -122,7 +122,7 @@ public class Pedido {
     public void asignarFechayHora(LocalDateTime fechaYHora){
         this.fechaYHora = fechaYHora;
     }
-
+//enunciado :Para la clase Pedido, se considera que dos pedidos son iguales si tienen el mismo número.
     @Override
     public int hashCode() {
         int hash = 7;

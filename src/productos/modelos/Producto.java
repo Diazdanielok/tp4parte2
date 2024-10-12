@@ -72,7 +72,7 @@ public class Producto {
     public void asignarCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
+//enunciado: Para la clase Producto, se considera que dos productos son iguales si tienen el mismo código.
     @Override
     public int hashCode() {
         int hash = 5;

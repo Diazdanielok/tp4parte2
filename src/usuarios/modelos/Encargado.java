@@ -7,7 +7,8 @@ package usuarios.modelos;
 import pedidos.modelos.Pedido;
 import java.util.ArrayList;
 import java.util.List;
-
+/*6. A la clase Encargado: hacerla subclase de Usuario y realizar las modificaciones que considere
+necesarias.*/
 public class Encargado extends Usuario {
 
     public Encargado(String correo, String apellido, String nombre, String clave) {

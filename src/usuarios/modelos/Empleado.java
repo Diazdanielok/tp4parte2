@@ -9,7 +9,8 @@ package usuarios.modelos;
 
 import java.util.List;
 import pedidos.modelos.Pedido;
-
+/*5. A la clase Empleado: hacerla subclase de Usuario y realizar las modificaciones que considere
+necesarias.*/
 public class Empleado extends Usuario {
 
     public Empleado(String correo, String apellido, String nombre, String clave) {

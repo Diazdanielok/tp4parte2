@@ -177,6 +177,8 @@ public class ControladorPrincipal {
 //        
 //    }
  /*
+
+
 //    INICIO SegUsuariosnda parte - herencia
 //    */
         ArrayList<Usuario> usuarios = new ArrayList<>();

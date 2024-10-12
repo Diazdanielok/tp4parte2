@@ -14,6 +14,12 @@ import pedidos.modelos.Pedido;
  *
  * @author 54381
  */
+/*ENUCrear la clase Usuario en el paquete usuarios.modelos
+● Agregar como variables de instancia aquellos atributos comunes a las clases Cliente, Empleado y
+Encargado.
+● Constructores y métodos get/set que considere necesarios
+● Hacerla abstracta. ¿Qué implica esto? ¿Cómo se implementa?
+● Método mostrar() con la misma funcionalidad que el de las clases Cliente, Empleado y Encargado.*/
 public abstract class Usuario implements Comparable<Usuario>{
     private String correo;
     private String clave;
