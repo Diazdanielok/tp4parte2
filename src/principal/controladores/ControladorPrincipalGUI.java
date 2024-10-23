@@ -4,8 +4,10 @@
  */
 package principal.controladores;
 
+import java.util.ArrayList;
 import javax.swing.UIManager;
-import usuarios.vistas.VentanaAMCliente;
+import usuarios.modelos.Usuario;
+import usuarios.vistas.VentanaAMUsuario;
 
 /**
  *
@@ -13,6 +15,7 @@ import usuarios.vistas.VentanaAMCliente;
  */
 public class ControladorPrincipalGUI {
     public static void main(String[] args) {
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
         //Trabajamos con una ventana por vez
         //Para todos los casos:
         /*
@@ -32,10 +35,14 @@ public class ControladorPrincipalGUI {
         
         //CLIENTE
        
-        VentanaAMCliente ventana = new VentanaAMCliente(null);
-        ventana.setLocationRelativeTo(null);
-        ventana.setTitle("Nuevo cliente");
-        ventana.setVisible(true);
+//        VentanaAMCliente ventana = new VentanaAMCliente(null);
+//        ventana.setLocationRelativeTo(null);
+//        ventana.setTitle("Nuevo cliente");
+//        ventana.setVisible(true);
+        VentanaAMUsuario ventanaUsuario = new VentanaAMUsuario(null, listaUsuarios);
+        ventanaUsuario.setLocationRelativeTo(null);
+        ventanaUsuario.setTitle("Nuevo cliente");
+        ventanaUsuario.setVisible(true);
              
        //EMPLEADO 
        /*
